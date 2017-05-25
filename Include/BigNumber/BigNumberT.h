@@ -1,0 +1,58 @@
+#ifndef HIERARCHY_BIG_NUMBER_H
+#define HIERARCHY_BIG_NUMBER_H
+
+#include "../Memory/MemoryLib.h"
+#include "../Error/ErrorLib.h"
+#include "../Print/PrintLib.h"
+#include "../CString/CStringLib.h"
+#include "../MemoryBlock/MemoryBlockLib.h"
+#include "../Debug/DebugLib.h"
+
+#define EC_521_P "01FF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF" \
+                "FFFFFFFFFFFFFFFF"
+
+#define EC_521_A "01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC"
+#define EC_521_B "0051953EB9618E1C9A1F929A21A0B68540EEA2DA725B99B315F3B8B489918EF109E156193951EC7E937B1652C0BD3BB1BF073573DF883D2C34F1EF451FD46B503F00"
+#define EC_521_N "01FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA51868783BF2F966B7FCC0148F709A5D03BB5C9B8899C47AEBB6FB71E91386409"
+#define EC_521_H "01"
+#define EC_521_GX "00C6858E06B70404E9CD9E3ECB662395B4429C648139053FB521F828AF606B4D3DBAA14B5E77EFE75928FE1DC127A2FFA8DE3348B3C1856A429BF97E7E31C2E5BD66"
+#define EC_521_GY "011839296A789A3BC0045C8A5FB42C7D1BD998F54449579B446817AFBD17273E662C97EE72995EF42640C550B9013FAD0761353C7086A272C24088BE94769FD16650"
+
+static const ByteT inv256[0x80] = {
+    0x01, 0xab, 0xcd, 0xb7, 0x39, 0xa3, 0xc5, 0xef,
+    0xf1, 0x1b, 0x3d, 0xa7, 0x29, 0x13, 0x35, 0xdf,
+    0xe1, 0x8b, 0xad, 0x97, 0x19, 0x83, 0xa5, 0xcf,
+    0xd1, 0xfb, 0x1d, 0x87, 0x09, 0xf3, 0x15, 0xbf,
+    0xc1, 0x6b, 0x8d, 0x77, 0xf9, 0x63, 0x85, 0xaf,
+    0xb1, 0xdb, 0xfd, 0x67, 0xe9, 0xd3, 0xf5, 0x9f,
+    0xa1, 0x4b, 0x6d, 0x57, 0xd9, 0x43, 0x65, 0x8f,
+    0x91, 0xbb, 0xdd, 0x47, 0xc9, 0xb3, 0xd5, 0x7f,
+    0x81, 0x2b, 0x4d, 0x37, 0xb9, 0x23, 0x45, 0x6f,
+    0x71, 0x9b, 0xbd, 0x27, 0xa9, 0x93, 0xb5, 0x5f,
+    0x61, 0x0b, 0x2d, 0x17, 0x99, 0x03, 0x25, 0x4f,
+    0x51, 0x7b, 0x9d, 0x07, 0x89, 0x73, 0x95, 0x3f,
+    0x41, 0xeb, 0x0d, 0xf7, 0x79, 0xe3, 0x05, 0x2f,
+    0x31, 0x5b, 0x7d, 0xe7, 0x69, 0x53, 0x75, 0x1f,
+    0x21, 0xcb, 0xed, 0xd7, 0x59, 0xc3, 0xe5, 0x0f,
+    0x11, 0x3b, 0x5d, 0xc7, 0x49, 0x33, 0x55, 0xff,
+};
+
+typedef struct {
+    ByteT *Data;
+    SizeT Size;
+    BitT Sign;
+} BigNumberT;
+
+void BigNumberDestroy(void *BigNumberV);
+BigNumberT *BigNumberInit(SizeT Size);
+BigNumberT *BigNumberInitFromInt(QWordT Int);
+BigNumberT *BigNumberInitFromHexString(char *HexString);
+
+#endif
