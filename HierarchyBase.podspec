@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description  = "HierarchyBase is base kernel tool for SafeUM"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.source       = { :git => "https://github.com/vikvych/hierarchy_base.git", :tag => s.version.to_s }
-  s.homepage     = "https://github.com/vikvych"
+  s.homepage     = "https://safeum.com"
   s.authors      = { 'SafeUM' => 'info@safeum.com' }
 
   s.ios.deployment_target   = '8.0'
